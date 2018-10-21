@@ -1,18 +1,18 @@
 # LightFullscreenGallery
 
-LightFullScreenGallery provide a convinient way to display pictures in fullscreen.
+LightFullScreenGallery provide a convenient way to display pictures in fullscreen.
 
 ## How to use it ?
 
 ### 1. Copy the files along your webpage
-Put in the same directory than your webpage these three files:
+Put these three files in the same directory than your webpage:
 
 * lightFullscreenGallery.js
 * lightFullscreenGallery.css
 * lfg_close.png
 
 ### 2. Include the scripts
-Include the script and the stylesheet to you html page:
+Include the script and the stylesheet in your html page:
 
 ```html
 <head>
@@ -24,8 +24,8 @@ Include the script and the stylesheet to you html page:
 ```
 
 ### 3. Adapt your page structure
-All your page content will be hidden and redisplayed by the script. It need to bein a block with the id "lfg_hidable".
-The function lfg_init should be call when the page is loaded. The easiest way to do that is to use this template
+All your page content will be hidden and redisplayed by the script. It need to be in a block with the id "lfg_hidable".
+The function lfg_init should be call when the page is loaded. The easiest way to do that is to use this template:
 
 ```html
 <body onload="lfg_init();">
@@ -36,7 +36,7 @@ The function lfg_init should be call when the page is loaded. The easiest way to
 ```
 
 ### 4. Declare that your images are part of a gallery
-All your image that should be open by the gallery should have a "data-lfg" attribut with the name of the gallery in the <a> tag.
+All your images that should be open by the gallery should have a "data-lfg" attribute with the name of the gallery in the &lt;a&mt; tag.
 This will alow you to have several gallery on the same page. Usually, you create a link arround a thumbview.
 
 ```html
