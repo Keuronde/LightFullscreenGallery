@@ -37,7 +37,7 @@ The function lfg_init should be call when the page is loaded. The easiest way to
 
 ### 4. Declare that your images are part of a gallery
 All your images that should be open by the gallery should have a "data-lfg" attribute with the name of the gallery in the &lt;a&gt; tag.
-This will alow you to have several gallery on the same page. Usually, you create a link arround a thumbview.
+This will allow you to have several gallery on the same page. Usually, you create a link arround a thumbview.
 
 ```html
 <a href="high_resolution_image.jpg" data-lfg="my_gallery">
