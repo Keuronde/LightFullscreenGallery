@@ -1,0 +1,36 @@
+#lfg_imageContainer{
+    background-color:#000;
+    position:absolute;
+    top:0px;
+    bottom:0px;
+    left:0px;
+    right:0px;
+}
+
+#lfg_image{
+    width:100%;
+    height:100%;
+    object-fit: contain;
+    margin:auto;
+}
+
+#lfg_closeButton{
+    position:absolute;
+    top:0px;
+    right:0px;
+}
+
+#lfg_toNextImage, #lfg_toPrevImage{
+    position:absolute;
+    width:50%;
+    height:100%;
+    top:0px
+}
+
+#lfg_toNextImage{
+    left:0px;
+}
+
+#lfg_toPrevImage{
+    right:0px;
+}
