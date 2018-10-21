@@ -45,5 +45,7 @@ This will allow you to have several gallery on the same page. Usually, you creat
 </a>
 ```
 
-
+## Demo
+You can download the demo folder and try the demo.html file in it.
+[You can also try the online demo](http://poivron-robotique.fr/Demo_LFG)
 
