@@ -2,6 +2,11 @@
 
 LightFullScreenGallery provide a convenient way to display pictures in fullscreen.
 
+Keyboard navigation is supported :
+Space, enter, right arrow, down arrow get you to the next image
+Left and up arrow get you to the previous image
+Escape close the gallery
+
 ## How to use it ?
 
 ### 1. Copy the files along your webpage
