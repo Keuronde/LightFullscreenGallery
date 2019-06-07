@@ -34,3 +34,14 @@
 #lfg_toPrevImage{
     right:0px;
 }
+
+#lfg_desc{
+    position:absolute;
+    bottom: 0px;
+    color:black;
+    border: solid black 2px;
+    background-color: #FFF9;
+    padding: 2px;
+    border-radius: 5px;
+        
+}

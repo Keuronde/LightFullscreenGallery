@@ -3,6 +3,7 @@ imageshow_tpl=`
 <div id="lfg_toPrevImage" onclick="lfg_goNext()"></div>
 <div id="lfg_toNextImage" onclick="lfg_goPrevious()"></div>
 <img src="lfg_close.png" id="lfg_closeButton" onclick="lfg_close()">
+<p id="lfg_desc">{{desc}}</p>
 `
 
 function lfg_init(){
@@ -32,7 +33,8 @@ function lfg_start(event){
     galleryNode.forEach(
     function(element){
         gallery.push({
-            href: element.getAttribute('href')
+            url: element.getAttribute('href'),
+            desc: element.getAttribute('data-lfg-desc')
         })
         if(element.getAttribute('href') === imageHref){
             imagePositionInGallery = gallery.length - 1;
@@ -40,7 +42,7 @@ function lfg_start(event){
     }
     )
     // display the image
-    lfg_render({"image":{"url":this.href}});
+    lfg_render({"image":gallery[imagePositionInGallery]});
     // Hide everything else
     document.getElementById('lfg_hidable').style["display"]="none";
 
@@ -75,18 +77,27 @@ function lfg_render(data){
 	imageshow_tpl.replace("{{url}}",data.image.url)
     //Render the data into the template
     var rendered = imageshow_tpl.replace("{{url}}",data.image.url)
+                                .replace("{{desc}}",data.image.desc)
 	var elemDiv = document.getElementById('lfg_imageContainer');
 	if(elemDiv == null){
-		elemDiv = document.createElement('div');
+        elemDiv = document.createElement('div');
 		elemDiv.id = 'lfg_imageContainer';
 	}
+
+
 	elemDiv.innerHTML = rendered;
 	document.body.appendChild(elemDiv);
+    
+    // Do not display description if there is none
+    if (data.image.desc == null){
+        document.getElementById('lfg_desc').style["display"]="none";
+    }
 }
 
 function lfg_goNext(){
     if(imagePositionInGallery < (gallery.length - 1)){
-        data = {"image":{"url":gallery[++imagePositionInGallery].href}}
+        //data = {"image":{"url":gallery[++imagePositionInGallery].href, "desc":gallery[imagePositionInGallery].desc }}
+        data = {"image":gallery[++imagePositionInGallery]}
 	    lfg_render(data);
     }
 
@@ -94,7 +105,8 @@ function lfg_goNext(){
 
 function lfg_goPrevious(){
     if(imagePositionInGallery > 0){
-        data = {"image":{"url":gallery[--imagePositionInGallery].href}}
+        data = {"image":gallery[--imagePositionInGallery]}
+        //data = {"image":{"url":gallery[--imagePositionInGallery].href, "desc":gallery[imagePositionInGallery].desc}}
 	    lfg_render(data);
     }
 
