@@ -3,6 +3,7 @@ imageshow_tpl=`
 <div id="lfg_toPrevImage" onclick="lfg_goNext()"></div>
 <div id="lfg_toNextImage" onclick="lfg_goPrevious()"></div>
 <img src="lfg_close.png" id="lfg_closeButton" onclick="lfg_close()">
+<div id="lfg_dl_info"><a href="{{url}}" download><img src="lfg_download.png" id="lfg_dlButton" onclick="lfg_close()"></a></div>
 <p id="lfg_desc">{{desc}}</p>
 `
 
@@ -76,7 +77,7 @@ function lfg_render(data){
     // display the image
 	imageshow_tpl.replace("{{url}}",data.image.url)
     //Render the data into the template
-    var rendered = imageshow_tpl.replace("{{url}}",data.image.url)
+    var rendered = imageshow_tpl.replace(/{{url}}/g,data.image.url)
                                 .replace("{{desc}}",data.image.desc)
 	var elemDiv = document.getElementById('lfg_imageContainer');
 	if(elemDiv == null){

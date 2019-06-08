@@ -20,6 +20,12 @@
     right:0px;
 }
 
+#lfg_dl_info{
+    position:absolute;
+    bottom:0px;
+    right:0px;
+}
+
 #lfg_toNextImage, #lfg_toPrevImage{
     position:absolute;
     width:50%;
