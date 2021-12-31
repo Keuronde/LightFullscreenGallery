@@ -99,6 +99,17 @@ function lfg_render(data){
     }else{
 		lfg_manageDisplayInfo();
 	}
+
+    // Preload "previous" and "next" image
+    if(imagePositionInGallery < (gallery.length - 1)){
+        data = {"image":gallery[imagePositionInGallery+1]}
+        preloadImage(data.image.url);
+    }
+
+    if(imagePositionInGallery > 0){
+        data = {"image":gallery[imagePositionInGallery-1]}
+        preloadImage(data.image.url);
+    }
 }
 
 function lfg_toggleInfo(){
@@ -109,7 +120,7 @@ function lfg_toggleInfo(){
 function lfg_manageDisplayInfo(){
 	var elem = document.getElementById('lfg_desc');
 	if(display_description){
-		elem.style.display = "block";
+		elem.style.display = "inline-block";
 	}else{
 		elem.style.display = "none";
 	}
@@ -201,3 +212,9 @@ function handleGesture() {
     lfg_close()
 }
 
+/* see https://stackoverflow.com/questions/3646036/preloading-images-with-javascript */
+function preloadImage(url)
+{
+    var img=new Image();
+    img.src=url;
+}

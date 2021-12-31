@@ -3,11 +3,16 @@ imageshow_tpl=`
 <div id="lfg_toPrevImage" onclick="lfg_goNext()"></div>
 <div id="lfg_toNextImage" onclick="lfg_goPrevious()"></div>
 <img src="lfg_close.png" id="lfg_closeButton" onclick="lfg_close()">
+<div id="lfg_dl_info">
+  <img src="lfg_info.png" id="lfg_infoButton" onclick="lfg_toggleInfo()">
+  <a href="{{url}}" download><img src="lfg_download.png" id="lfg_dlButton"></a>
+</div>
 <p id="lfg_desc">{{desc}}</p>
 `
 
 function lfg_init(){
-    links = [].slice.call(document.querySelectorAll("[data-lfg]"));
+    var links = [].slice.call(document.querySelectorAll("[data-lfg]"));
+	display_description = true;
     links.forEach(
     function(element){
         element.addEventListener("click", lfg_start, false);
@@ -76,7 +81,7 @@ function lfg_render(data){
     // display the image
 	imageshow_tpl.replace("{{url}}",data.image.url)
     //Render the data into the template
-    var rendered = imageshow_tpl.replace("{{url}}",data.image.url)
+    var rendered = imageshow_tpl.replace(/{{url}}/g,data.image.url)
                                 .replace("{{desc}}",data.image.desc)
 	var elemDiv = document.getElementById('lfg_imageContainer');
 	if(elemDiv == null){
@@ -91,7 +96,34 @@ function lfg_render(data){
     // Do not display description if there is none
     if (data.image.desc == null){
         document.getElementById('lfg_desc').style["display"]="none";
+    }else{
+		lfg_manageDisplayInfo();
+	}
+
+    // Preload "previous" and "next" image
+    if(imagePositionInGallery < (gallery.length - 1)){
+        data = {"image":gallery[imagePositionInGallery+1]}
+        preloadImage(data.image.url);
     }
+
+    if(imagePositionInGallery > 0){
+        data = {"image":gallery[imagePositionInGallery-1]}
+        preloadImage(data.image.url);
+    }
+}
+
+function lfg_toggleInfo(){
+	display_description =! display_description;
+	lfg_manageDisplayInfo();
+}
+
+function lfg_manageDisplayInfo(){
+	var elem = document.getElementById('lfg_desc');
+	if(display_description){
+		elem.style.display = "inline-block";
+	}else{
+		elem.style.display = "none";
+	}
 }
 
 function lfg_goNext(){
@@ -180,3 +212,9 @@ function handleGesture() {
     lfg_close()
 }
 
+/* see https://stackoverflow.com/questions/3646036/preloading-images-with-javascript */
+function preloadImage(url)
+{
+    var img=new Image();
+    img.src=url;
+}
